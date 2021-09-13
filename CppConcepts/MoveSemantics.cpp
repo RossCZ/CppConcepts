@@ -63,12 +63,14 @@ public:
 
 void moveSemantics()
 {
+    std::cout << std::endl << "Move semantics" << std::endl;
+
     SetCreator sc;
     TargetClass tc1;
     TargetClass tc2;
 
     // Create set
-    auto mySet = sc.createSet(1e5);
+    auto mySet = sc.createSet(1e5);  // warning - converting double to int
     sc.analyzeSet(mySet);
 
     // Set set - Copy

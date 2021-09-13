@@ -1,5 +1,5 @@
 #include "stdafx.h"
-#include "AdressModification.h"
+#include "AddressModification.h"
 
 #include <iostream>
 #include <string>
@@ -7,28 +7,30 @@
 
 using namespace std;
 
-void adressModification()
+void addressModification()
 {
+    std::cout << std::endl << "Address modification" << std::endl;
     // create pointer to int on heap
     const int* x = new int(5);
     // *x = 3; - this fails because it's constant
     cout << "X value (const int): " << *x << endl;
 
     // save address as a string 
-    ostringstream get_the_address;
-    get_the_address << x;
-    string address = get_the_address.str();
+    ostringstream getTheAdress;
+    getTheAdress << x;
+    string address = getTheAdress.str();
 
     cout << "X adress: " << address << endl;
 
     // convert address to base 16
-    int hex_address = stoi(address, 0, 16);
+    // sometimes causes out of range exception - works only on x86 build
+    int hexAddress = stoi(address, 0, 16);
 
-    // make a new pointer 
-    int* new_pointer = (int*)hex_address;
+    // make a new pointer (warning - type cast conversion from greater size)
+    int* newPtr = (int*)hexAddress;
 
     // can now change value of x 
-    *new_pointer = 3;
+    *newPtr = 3;
 
     cout << "X value (modified): " << *x << endl;
 }
